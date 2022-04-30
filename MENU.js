@@ -1,21 +1,27 @@
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import {useState} from 'react'
 
-export default function Contact({name, phoneNumber, totalAge, setTotalAge}) {
-  const [age, setAge] = useState(0);
-  function makeMeOlder(){
-    setAge(age + 1)
-    setTotalAge(totalAge + 1);
+export default function Details({name, totalCost, setTotalCost, price1, image,}) {
+  
+  const [price2, setPrice] = useState(0);
+  function ADanItem(){
+    setPrice(price1 + price2)
+    setTotalCost(totalCost + price1);
+  }
+  function RemoveItem(){
+    setTotalCost(totalCost - price2);
+    setPrice(price1 - price2);
   }
   return (
     <View style={styles.contact}>
-      <Image style={styles.image} source={require('./assets/avatar.png')} />
+      <Image style={styles.image} source={image} />
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
-        <Text>Age: {age}</Text>
-        <Text>{phoneNumber}</Text>
-        <Button title="Grow Me" onPress={makeMeOlder} />
+        <Text>TotalPrice: {price2}</Text>
+        <Button title="Add an Item" onPress={ADanItem} />
+        <Button title='Remove Item' onPress={RemoveItem}/>
       </View>
+      
     </View>
   )
 }
